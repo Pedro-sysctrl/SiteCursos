@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O que é Inteligência Artificial? — Aurea Academy</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../index.html" class="logo"><div class="logo-icon">✦</div> Aurea Academy</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">Início</a>
+        <a href="../index.html#cursos">Cursos</a>
+        <a href="../comunidade.html">Comunidade</a>
+        <span id="navAuth"></span>
+      </nav>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </header>
+
+  <section class="lesson-hero">
+    <div class="lesson-hero-inner">
+      <div class="breadcrumb"><a href="../index.html">Início</a> → <a href="../index.html#cursos">Cursos</a> → Inteligência Artificial</div>
+      <h1>O que é Inteligência Artificial?</h1>
+      <div class="lesson-meta">
+        <span>🤖 Tecnologia</span>
+        <span>⏱ 16 min</span>
+        <span>📊 Todos os níveis</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="lesson-content">
+    <p>Inteligência Artificial (IA) é um dos temas mais buscados atualmente. Esta aula explica o conceito de forma clara, como os sistemas aprendem e onde a IA já está presente no seu dia a dia — sem jargão desnecessário.</p>
+
+    <h2>1. Definição simples</h2>
+    <p>Inteligência Artificial é a capacidade de sistemas de computador realizarem tarefas que normalmente exigiriam inteligência humana: reconhecer padrões, entender linguagem, tomar decisões, gerar texto ou imagens, jogar, diagnosticar etc.</p>
+    <p>Não é “um robô pensante” no sentido de ficção científica. É um conjunto de técnicas matemáticas e computacionais que permitem aos programas aprender com dados e melhorar o desempenho.</p>
+
+    <h2>2. Como a IA “aprende”?</h2>
+    <p>A abordagem dominante hoje é o <strong>aprendizado de máquina</strong> (machine learning):</p>
+    <ul>
+      <li>Alimentamos o sistema com muitos exemplos (dados)</li>
+      <li>O algoritmo ajusta parâmetros internos para encontrar padrões</li>
+      <li>Depois, usa esses padrões para prever ou gerar resultados em situações novas</li>
+    </ul>
+    <p>Quando a rede tem muitas camadas, chamamos de <strong>aprendizado profundo</strong> (deep learning). É o que está por trás de reconhecimento de imagem, tradução automática e dos grandes modelos de linguagem (como ChatGPT, Gemini, Claude, Grok).</p>
+
+    <h2>3. Tipos principais</h2>
+    <ul>
+      <li><strong>IA estreita (ou fraca):</strong> especializada em uma tarefa (reconhecer faces, recomendar filmes, jogar xadrez). É a que existe hoje.</li>
+      <li><strong>IA geral:</strong> capacidade de realizar qualquer tarefa intelectual humana. Ainda não existe.</li>
+      <li><strong>Modelos generativos:</strong> geram texto, imagem, áudio ou código a partir de um pedido (prompt).</li>
+    </ul>
+
+    <h2>4. Onde a IA já está no seu dia a dia</h2>
+    <ul>
+      <li>Recomendações de filmes, músicas e produtos</li>
+      <li>Assistentes de voz e chatbots</li>
+      <li>Filtros de spam e detecção de fraude</li>
+      <li>Tradução automática e correção de texto</li>
+      <li>Diagnóstico por imagem na medicina</li>
+      <li>Carros com recursos de assistência ao motorista</li>
+      <li>Ferramentas de geração de texto e imagem</li>
+    </ul>
+
+    <h2>5. Limitações importantes</h2>
+    <ul>
+      <li>A IA atual não “entende” o mundo como nós; ela prediz padrões estatísticos</li>
+      <li>Pode errar, inventar informações (alucinações) ou reproduzir vieses dos dados de treino</li>
+      <li>Depende de grandes volumes de dados e de muito poder computacional</li>
+      <li>Questões éticas: privacidade, emprego, desinformação, responsabilidade</li>
+    </ul>
+
+    <div class="tip-box">
+      <div class="icon">💡</div>
+      <div>
+        <strong>Para estudar e trabalhar:</strong> saber o que a IA faz bem e onde ela falha é mais importante do que decorar nomes de modelos. Use-a como ferramenta de apoio, sempre conferindo o resultado.
+      </div>
+    </div>
+
+    <h2>6. Resumo</h2>
+    <p>IA é a capacidade de máquinas realizarem tarefas inteligentes a partir de dados e algoritmos. O aprendizado de máquina e o deep learning são as técnicas centrais de hoje. Ela já está em quase tudo o que é digital, mas ainda é estreita, falível e exige uso crítico.</p>
+
+    <div class="quiz-box">
+      <h3>Quiz</h3>
+      <p>O que caracteriza a IA estreita (ou fraca)?</p>
+      <div class="quiz-options" id="quiz1">
+        <div class="quiz-opt" data-correct="false">Capacidade de fazer qualquer tarefa humana</div>
+        <div class="quiz-opt" data-correct="true">Especialização em uma tarefa específica</div>
+        <div class="quiz-opt" data-correct="false">Consciência e sentimentos</div>
+        <div class="quiz-opt" data-correct="false">Funcionar sem dados de treino</div>
+      </div>
+      <div class="quiz-feedback" id="feedback1"></div>
+    </div>
+
+    <div class="next-lesson">
+      <a href="segunda-guerra.html" class="btn btn-outline">← 2ª Guerra</a>
+      <a href="../index.html#cursos" class="btn btn-primary">Ver todos os cursos →</a>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="max-width:900px;margin:0 auto;padding:2rem 1.5rem;border-top:1px solid var(--border);">
+      <span>© 2026 Aurea Academy</span>
+      <a href="../index.html">Início</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('menuToggle')?.addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+    document.querySelectorAll('#quiz1 .quiz-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const opts = document.querySelectorAll('#quiz1 .quiz-opt');
+        const fb = document.getElementById('feedback1');
+        opts.forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='none'; });
+        if (opt.dataset.correct === 'true') {
+          opt.classList.add('correct');
+          fb.textContent = 'Correto! A IA estreita é especializada em tarefas específicas. A IA geral ainda não existe.';
+          fb.className = 'quiz-feedback show success';
+        } else {
+          opt.classList.add('wrong');
+          fb.textContent = 'Resposta correta: especialização em uma tarefa. É o tipo de IA que existe hoje.';
+          fb.className = 'quiz-feedback show error';
+          opts.forEach(o => { if (o.dataset.correct==='true') o.classList.add('correct'); });
+        }
+      });
+    });
+  </script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>

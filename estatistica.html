@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estatística Básica — Aurea Academy</title>
+  <meta name="description" content="Aula completa de estatística: média, mediana, moda, interpretação de dados e gráficos. Essencial para Enem e vida prática.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../index.html" class="logo"><div class="logo-icon">✦</div> Aurea Academy</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">Início</a>
+        <a href="../index.html#cursos">Cursos</a>
+        <a href="../comunidade.html">Comunidade</a>
+        <span id="navAuth"></span>
+      </nav>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </header>
+
+  <section class="lesson-hero">
+    <div class="lesson-hero-inner">
+      <div class="breadcrumb"><a href="../index.html">Início</a> → <a href="../index.html#cursos">Cursos</a> → Estatística</div>
+      <h1>Estatística Básica</h1>
+      <div class="lesson-meta">
+        <span>📐 Matemática</span>
+        <span>⏱ 15 min</span>
+        <span>📊 Enem & Vestibular</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="lesson-content">
+    <p>Estatística está entre os temas mais cobrados no Enem e em vestibulares. Saber calcular média, mediana e moda — e principalmente interpretar o que os números dizem — é uma habilidade que você usa a vida inteira.</p>
+
+    <h2>1. O que a estatística faz?</h2>
+    <p>Ela organiza, resume e interpreta conjuntos de dados. Em vez de olhar 100 números soltos, você usa medidas que contam a história dos dados de forma compacta.</p>
+
+    <h2>2. Média aritmética</h2>
+    <p>É a soma de todos os valores dividida pela quantidade de valores.</p>
+    <div class="formula">
+      Média = (x₁ + x₂ + … + xₙ) / n
+    </div>
+    <div class="example-box">
+      <h4>Exemplo</h4>
+      <p>Notas: 7, 8, 6, 9, 10</p>
+      <p>Soma = 40 → Média = 40 / 5 = <strong>8</strong></p>
+    </div>
+    <p>A média é sensível a valores extremos (outliers). Um valor muito alto ou muito baixo “puxa” a média.</p>
+
+    <h2>3. Mediana</h2>
+    <p>É o valor do meio quando os dados estão ordenados. Se a quantidade for par, a mediana é a média dos dois valores centrais.</p>
+    <div class="example-box">
+      <h4>Exemplo ímpar</h4>
+      <p>Dados ordenados: 3, 5, 7, 9, 12 → Mediana = <strong>7</strong></p>
+      <h4>Exemplo par</h4>
+      <p>Dados: 4, 6, 8, 10 → Mediana = (6+8)/2 = <strong>7</strong></p>
+    </div>
+    <p>A mediana é mais resistente a outliers que a média.</p>
+
+    <h2>4. Moda</h2>
+    <p>É o valor que mais se repete. Pode haver mais de uma moda (bimodal, multimodal) ou nenhuma (todos os valores diferentes).</p>
+    <div class="example-box">
+      <h4>Exemplo</h4>
+      <p>2, 3, 3, 5, 7, 3, 9 → Moda = <strong>3</strong> (aparece 3 vezes)</p>
+    </div>
+
+    <h2>5. Quando usar cada uma?</h2>
+    <ul>
+      <li><strong>Média:</strong> quando os dados são simétricos e sem valores extremos distorcendo.</li>
+      <li><strong>Mediana:</strong> quando há outliers ou distribuição assimétrica (ex.: salários, preços de imóveis).</li>
+      <li><strong>Moda:</strong> para dados categóricos ou para identificar o valor mais comum (ex.: tamanho de roupa mais vendido).</li>
+    </ul>
+
+    <div class="tip-box">
+      <div class="icon">💡</div>
+      <div>
+        <strong>No Enem:</strong> muitas questões pedem a média e a mediana do mesmo conjunto e pedem para comparar. Lembre: se a média for bem maior que a mediana, provavelmente há valores altos puxando a média.
+      </div>
+    </div>
+
+    <h2>6. Interpretação de gráficos</h2>
+    <p>Gráficos de barras, linhas e setores (pizza) são muito cobrados. Foque em:</p>
+    <ul>
+      <li>Ler eixos e legendas</li>
+      <li>Identificar o maior/menor valor</li>
+      <li>Calcular diferenças e proporções a partir do gráfico</li>
+      <li>Evitar conclusões que o gráfico não permite</li>
+    </ul>
+
+    <div class="quiz-box">
+      <h3>Quiz</h3>
+      <p>Notas: 5, 7, 7, 8, 9. Qual a mediana e a moda?</p>
+      <div class="quiz-options" id="quiz1">
+        <div class="quiz-opt" data-correct="false">Mediana 7, moda 8</div>
+        <div class="quiz-opt" data-correct="true">Mediana 7, moda 7</div>
+        <div class="quiz-opt" data-correct="false">Mediana 8, moda 7</div>
+        <div class="quiz-opt" data-correct="false">Mediana 7,5, moda 7</div>
+      </div>
+      <div class="quiz-feedback" id="feedback1"></div>
+    </div>
+
+    <div class="next-lesson">
+      <a href="porcentagens.html" class="btn btn-outline">← Porcentagens</a>
+      <a href="fotossintese.html" class="btn btn-primary">Próxima: Fotossíntese →</a>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="max-width:900px;margin:0 auto;padding:2rem 1.5rem;border-top:1px solid var(--border);">
+      <span>© 2026 Aurea Academy</span>
+      <a href="../index.html">Início</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('menuToggle')?.addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+    document.querySelectorAll('#quiz1 .quiz-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const opts = document.querySelectorAll('#quiz1 .quiz-opt');
+        const fb = document.getElementById('feedback1');
+        opts.forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='none'; });
+        if (opt.dataset.correct === 'true') {
+          opt.classList.add('correct');
+          fb.textContent = 'Correto! Ordenados: 5,7,7,8,9 → mediana é o 3º valor (7). Moda é 7 (mais frequente).';
+          fb.className = 'quiz-feedback show success';
+        } else {
+          opt.classList.add('wrong');
+          fb.textContent = 'Resposta: mediana 7 e moda 7. O valor central é 7 e ele também é o que mais se repete.';
+          fb.className = 'quiz-feedback show error';
+          opts.forEach(o => { if (o.dataset.correct==='true') o.classList.add('correct'); });
+        }
+      });
+    });
+  </script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>

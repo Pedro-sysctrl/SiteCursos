@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil — Aurea Academy</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">✦</div>
+        Aurea Academy
+      </a>
+      <nav class="nav" id="nav">
+        <a href="index.html">Início</a>
+        <a href="index.html#cursos">Cursos</a>
+        <span id="navAuth"></span>
+      </nav>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </header>
+
+  <div id="profileContent">
+    <!-- filled by JS -->
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById('menuToggle')?.addEventListener('click', () => {
+      document.getElementById('nav').classList.toggle('open');
+    });
+
+    if (!AureaAuth.isLoggedIn()) {
+      window.location.href = 'login.html';
+    }
+
+    function renderProfile() {
+      const user = AureaAuth.currentUser();
+      if (!user) return;
+
+      const posts = AureaAuth.getPosts().filter(p => p.userId === user.id);
+      const initials = AureaAuth.getInitials(user.name);
+      const memberSince = new Date(user.createdAt).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+
+      document.getElementById('profileContent').innerHTML = `
+        <section class="profile-hero">
+          <div class="profile-hero-inner">
+            <div class="profile-avatar-lg">${initials}</div>
+            <div class="profile-info">
+              <h1>${escapeHtml(user.name)}</h1>
+              <p class="email">${escapeHtml(user.email)}</p>
+              <p class="bio">${user.bio ? escapeHtml(user.bio) : 'Nenhuma bio ainda. Edite seu perfil abaixo.'}</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="profile-body">
+          <div class="profile-section">
+            <h2>Editar perfil</h2>
+            <div class="form-error" id="profileError"></div>
+            <div class="form-success" id="profileSuccess"></div>
+            <form id="profileForm">
+              <div class="form-group">
+                <label for="editName">Nome</label>
+                <input type="text" id="editName" value="${escapeAttr(user.name)}" required>
+              </div>
+              <div class="form-group">
+                <label for="editBio">Bio / O que você está estudando</label>
+                <textarea id="editBio" placeholder="Ex: Preparando para o Enem, focado em matemática e biologia...">${escapeHtml(user.bio || '')}</textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Salvar alterações</button>
+            </form>
+          </div>
+
+          <div class="profile-section">
+            <h2>Suas publicações (${posts.length})</h2>
+            ${posts.length === 0 ? `
+              <div class="empty-state">
+                <div class="icon">📝</div>
+                <p>Você ainda não publicou nada.</p>
+                <a href="comunidade.html" class="btn btn-outline" style="margin-top:1rem;">Ir para a Comunidade</a>
+              </div>
+            ` : posts.map(p => `
+              <div class="post-card" style="margin-bottom:1rem;">
+                <div class="post-header">
+                  <span class="post-type-badge ${p.type}">${p.type === 'request' ? 'Pedido de conteúdo' : 'Comentário'}</span>
+                  <span style="font-size:0.8rem;color:var(--text-muted);margin-left:auto;">${AureaAuth.formatDate(p.createdAt)}</span>
+                </div>
+                <div class="post-content">${escapeHtml(p.content)}</div>
+                <div class="post-actions">
+                  <span style="color:var(--text-muted);font-size:0.85rem;">♥ ${p.likes.length} · ${p.replies.length} respostas</span>
+                  <button type="button" class="post-action-btn" onclick="deleteMyPost('${p.id}')">Excluir</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="profile-section">
+            <h2>Conta</h2>
+            <p style="color:var(--text-muted);margin-bottom:1rem;font-size:0.95rem;">Membro desde ${memberSince}</p>
+            <button type="button" class="btn btn-outline" id="logoutBtn">Sair da conta</button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('profileForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const result = AureaAuth.updateProfile({
+          name: document.getElementById('editName').value,
+          bio: document.getElementById('editBio').value
+        });
+        const err = document.getElementById('profileError');
+        const ok = document.getElementById('profileSuccess');
+        err.classList.remove('show');
+        ok.classList.remove('show');
+        if (result.ok) {
+          ok.textContent = 'Perfil atualizado!';
+          ok.classList.add('show');
+          AureaAuth.updateNav();
+          setTimeout(() => renderProfile(), 500);
+        } else {
+          err.textContent = result.error;
+          err.classList.add('show');
+        }
+      });
+
+      document.getElementById('logoutBtn')?.addEventListener('click', () => {
+        AureaAuth.logout();
+        window.location.href = 'index.html';
+      });
+    }
+
+    function deleteMyPost(id) {
+      if (!confirm('Excluir esta publicação?')) return;
+      AureaAuth.deletePost(id);
+      renderProfile();
+    }
+
+    function escapeHtml(str) {
+      const d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+    function escapeAttr(str) {
+      return escapeHtml(str).replace(/"/g, '&quot;');
+    }
+
+    renderProfile();
+  </script>
+</body>
+</html>

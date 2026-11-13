@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fotossíntese Completa — Aurea Academy</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../index.html" class="logo"><div class="logo-icon">✦</div> Aurea Academy</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">Início</a>
+        <a href="../index.html#cursos">Cursos</a>
+        <a href="../comunidade.html">Comunidade</a>
+        <span id="navAuth"></span>
+      </nav>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </header>
+
+  <section class="lesson-hero">
+    <div class="lesson-hero-inner">
+      <div class="breadcrumb"><a href="../index.html">Início</a> → <a href="../index.html#cursos">Cursos</a> → Fotossíntese</div>
+      <h1>Fotossíntese Completa</h1>
+      <div class="lesson-meta">
+        <span>🌱 Biologia</span>
+        <span>⏱ 14 min</span>
+        <span>📊 Fundamental e Médio</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="lesson-content">
+    <p>A fotossíntese é um dos processos mais importantes da vida na Terra e um clássico de provas de ciências. Entender a equação, as fases e o papel ecológico resolve a maioria das dúvidas sobre o tema.</p>
+
+    <h2>1. O que é fotossíntese?</h2>
+    <p>É o processo pelo qual plantas, algas e algumas bactérias convertem energia luminosa em energia química (glicose), usando água e dióxido de carbono, e liberando oxigênio.</p>
+    <div class="formula">
+      6 CO₂ + 6 H₂O + luz → C₆H₁₂O₆ + 6 O₂
+    </div>
+    <p>Em palavras: dióxido de carbono + água + luz solar → glicose + oxigênio.</p>
+
+    <h2>2. Onde acontece?</h2>
+    <p>Principalmente nos <strong>cloroplastos</strong> das células das folhas. Dentro dos cloroplastos há a clorofila, pigmento que captura a luz (por isso as plantas são verdes).</p>
+
+    <h2>3. As duas fases</h2>
+    <h3>Fase clara (ou fotoquímica)</h3>
+    <ul>
+      <li>Depende da luz</li>
+      <li>Acontece nos tilacoides</li>
+      <li>A água é “quebrada” (fotólise) → libera O₂</li>
+      <li>Produz ATP e NADPH (moléculas energéticas)</li>
+    </ul>
+    <h3>Fase escura (Ciclo de Calvin)</h3>
+    <ul>
+      <li>Não depende diretamente da luz (mas usa os produtos da fase clara)</li>
+      <li>Acontece no estroma do cloroplasto</li>
+      <li>Fixa o CO₂ e produz glicose</li>
+    </ul>
+
+    <div class="tip-box">
+      <div class="icon">💡</div>
+      <div>
+        <strong>Atenção:</strong> “Fase escura” não significa que só ocorre no escuro. Ela pode acontecer de dia também; o nome indica que não precisa de luz direta, apenas dos produtos da fase clara.
+      </div>
+    </div>
+
+    <h2>4. Importância ecológica</h2>
+    <ul>
+      <li>Produz o oxigênio que respiramos</li>
+      <li>É a base da cadeia alimentar (produtores)</li>
+      <li>Retira CO₂ da atmosfera (ajuda a regular o clima)</li>
+    </ul>
+
+    <h2>5. Fatores que influenciam</h2>
+    <p>Intensidade luminosa, concentração de CO₂, temperatura e disponibilidade de água. Cada fator tem um ponto ótimo; em excesso ou falta, a taxa de fotossíntese cai.</p>
+
+    <div class="quiz-box">
+      <h3>Quiz</h3>
+      <p>Qual gás é liberado na fotossíntese como produto da quebra da água?</p>
+      <div class="quiz-options" id="quiz1">
+        <div class="quiz-opt" data-correct="false">CO₂</div>
+        <div class="quiz-opt" data-correct="true">O₂</div>
+        <div class="quiz-opt" data-correct="false">N₂</div>
+        <div class="quiz-opt" data-correct="false">H₂</div>
+      </div>
+      <div class="quiz-feedback" id="feedback1"></div>
+    </div>
+
+    <div class="next-lesson">
+      <a href="estatistica.html" class="btn btn-outline">← Estatística</a>
+      <a href="equacoes.html" class="btn btn-primary">Próxima: Equações do 2º Grau →</a>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="max-width:900px;margin:0 auto;padding:2rem 1.5rem;border-top:1px solid var(--border);">
+      <span>© 2026 Aurea Academy</span>
+      <a href="../index.html">Início</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('menuToggle')?.addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+    document.querySelectorAll('#quiz1 .quiz-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const opts = document.querySelectorAll('#quiz1 .quiz-opt');
+        const fb = document.getElementById('feedback1');
+        opts.forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='none'; });
+        if (opt.dataset.correct === 'true') {
+          opt.classList.add('correct');
+          fb.textContent = 'Correto! O oxigênio (O₂) é liberado na fotólise da água durante a fase clara.';
+          fb.className = 'quiz-feedback show success';
+        } else {
+          opt.classList.add('wrong');
+          fb.textContent = 'A resposta correta é O₂ (oxigênio), produto da quebra da água na fase clara.';
+          fb.className = 'quiz-feedback show error';
+          opts.forEach(o => { if (o.dataset.correct==='true') o.classList.add('correct'); });
+        }
+      });
+    });
+  </script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>

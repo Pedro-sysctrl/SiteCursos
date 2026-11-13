@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comunidade — Aurea Academy</title>
+  <meta name="description" content="Peça conteúdos, compartilhe o que está estudando e converse com outros alunos da Aurea Academy.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">✦</div>
+        Aurea Academy
+      </a>
+      <nav class="nav" id="nav">
+        <a href="index.html">Início</a>
+        <a href="index.html#cursos">Cursos</a>
+        <span id="navAuth"></span>
+      </nav>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </header>
+
+  <div class="community-layout">
+    <div class="community-header">
+      <span class="section-label">Comunidade</span>
+      <h1>O que você está estudando?</h1>
+      <p>Peça novos conteúdos, tire dúvidas e compartilhe sua jornada com outros alunos.</p>
+    </div>
+
+    <div id="composerArea"></div>
+    <div id="feed"></div>
+  </div>
+
+  <footer class="footer" style="margin-top:2rem;">
+    <div class="footer-bottom" style="max-width:720px;margin:0 auto;padding:2rem 1.5rem;border-top:1px solid var(--border);">
+      <span>© 2026 Aurea Academy</span>
+      <a href="index.html">Voltar ao início</a>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById('menuToggle')?.addEventListener('click', () => {
+      document.getElementById('nav').classList.toggle('open');
+    });
+
+    let postType = 'comment';
+    let openReplyId = null;
+
+    function escapeHtml(str) {
+      const d = document.createElement('div');
+      d.textContent = str || '';
+      return d.innerHTML;
+    }
+
+    function renderComposer() {
+      const area = document.getElementById('composerArea');
+      if (!AureaAuth.isLoggedIn()) {
+        area.innerHTML = `
+          <div class="login-required">
+            <p>Faça login para pedir conteúdos e comentar sobre o que está estudando.</p>
+            <a href="login.html" class="btn btn-primary">Entrar ou criar conta</a>
+          </div>
+        `;
+        return;
+      }
+      const user = AureaAuth.currentUser();
+      area.innerHTML = `
+        <div class="composer">
+          <div class="composer-tabs">
+            <button type="button" class="composer-tab ${postType === 'comment' ? 'active' : ''}" data-type="comment">💬 Comentário / estudo</button>
+            <button type="button" class="composer-tab ${postType === 'request' ? 'active' : ''}" data-type="request">📣 Pedir conteúdo</button>
+          </div>
+          <textarea id="postContent" placeholder="${postType === 'request' ? 'Ex: Gostaria de uma aula sobre regra de três e proporções...' : 'Ex: Estou revisando porcentagens para o Enem. Alguém tem dica de exercícios?'}"></textarea>
+          <div class="composer-actions">
+            <span class="composer-hint">Publicando como <strong style="color:var(--gold)">${escapeHtml(user.name)}</strong></span>
+            <button type="button" class="btn btn-primary" id="btnPublish">Publicar</button>
+          </div>
+          <div class="form-error" id="composerError" style="margin-top:0.75rem;"></div>
+        </div>
+      `;
+      area.querySelectorAll('.composer-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          postType = tab.dataset.type;
+          renderComposer();
+        });
+      });
+      document.getElementById('btnPublish').addEventListener('click', publishPost);
+    }
+
+    function publishPost() {
+      const content = document.getElementById('postContent').value;
+      const errEl = document.getElementById('composerError');
+      errEl.classList.remove('show');
+      const result = AureaAuth.createPost({ content, type: postType });
+      if (result.ok) {
+        document.getElementById('postContent').value = '';
+        renderFeed();
+      } else {
+        errEl.textContent = result.error;
+        errEl.classList.add('show');
+      }
+    }
+
+    function renderFeed() {
+      const feed = document.getElementById('feed');
+      const posts = AureaAuth.getPosts();
+      const session = AureaAuth.currentUser();
+
+      if (posts.length === 0) {
+        feed.innerHTML = `
+          <div class="empty-state">
+            <div class="icon">✦</div>
+            <p>Nenhuma publicação ainda.<br>Seja o primeiro a pedir um conteúdo ou contar o que está estudando!</p>
+          </div>
+        `;
+        return;
+      }
+
+      feed.innerHTML = posts.map(p => {
+        const liked = session && p.likes.includes(session.id);
+        const isOwner = session && p.userId === session.id;
+        return `
+          <article class="post-card" data-id="${p.id}">
+            <div class="post-header">
+              <div class="post-avatar">${AureaAuth.getInitials(p.userName)}</div>
+              <div class="post-meta">
+                <strong>${escapeHtml(p.userName)}</strong>
+                <span>${AureaAuth.formatDate(p.createdAt)}</span>
+              </div>
+              <span class="post-type-badge ${p.type}">${p.type === 'request' ? 'Pedido de conteúdo' : 'Estudo'}</span>
+            </div>
+            <div class="post-content">${escapeHtml(p.content)}</div>
+            <div class="post-actions">
+              <button type="button" class="post-action-btn ${liked ? 'liked' : ''}" onclick="toggleLike('${p.id}')">
+                ♥ ${p.likes.length}
+              </button>
+              <button type="button" class="post-action-btn" onclick="toggleReply('${p.id}')">
+                💬 ${p.replies.length}
+              </button>
+              ${isOwner ? `<button type="button" class="post-action-btn" onclick="deletePost('${p.id}')">Excluir</button>` : ''}
+            </div>
+            ${p.replies.length || openReplyId === p.id ? `
+              <div class="replies">
+                ${p.replies.map(r => `
+                  <div class="reply">
+                    <strong>${escapeHtml(r.userName)}</strong>
+                    <span style="color:var(--text-muted);font-size:0.8rem;">${AureaAuth.formatDate(r.createdAt)}</span>
+                    <div style="margin-top:0.25rem;">${escapeHtml(r.content)}</div>
+                  </div>
+                `).join('')}
+                ${session ? `
+                  <div class="reply-form" id="replyForm-${p.id}" style="${openReplyId === p.id ? '' : 'display:none;'}">
+                    <input type="text" id="replyInput-${p.id}" placeholder="Escreva uma resposta..." maxlength="500">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="sendReply('${p.id}')">Enviar</button>
+                  </div>
+                ` : ''}
+              </div>
+            ` : ''}
+          </article>
+        `;
+      }).join('');
+    }
+
+    function toggleLike(id) {
+      if (!AureaAuth.isLoggedIn()) {
+        window.location.href = 'login.html';
+        return;
+      }
+      AureaAuth.toggleLike(id);
+      renderFeed();
+    }
+
+    function toggleReply(id) {
+      if (!AureaAuth.isLoggedIn()) {
+        window.location.href = 'login.html';
+        return;
+      }
+      openReplyId = openReplyId === id ? null : id;
+      renderFeed();
+      if (openReplyId) {
+        setTimeout(() => document.getElementById('replyInput-' + id)?.focus(), 50);
+      }
+    }
+
+    function sendReply(id) {
+      const input = document.getElementById('replyInput-' + id);
+      const result = AureaAuth.addReply(id, input?.value || '');
+      if (result.ok) {
+        openReplyId = id;
+        renderFeed();
+      } else {
+        alert(result.error);
+      }
+    }
+
+    function deletePost(id) {
+      if (!confirm('Excluir esta publicação?')) return;
+      AureaAuth.deletePost(id);
+      renderFeed();
+    }
+
+    // Seed demo posts if empty (first visit)
+    function seedIfEmpty() {
+      if (AureaAuth.getPosts().length > 0) return;
+      // Only seed visual placeholders without fake users in storage - skip for honesty
+    }
+
+    renderComposer();
+    renderFeed();
+  </script>
+</body>
+</html>

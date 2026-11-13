@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equações do 2º Grau — Aurea Academy</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../index.html" class="logo"><div class="logo-icon">✦</div> Aurea Academy</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">Início</a>
+        <a href="../index.html#cursos">Cursos</a>
+        <a href="../comunidade.html">Comunidade</a>
+        <span id="navAuth"></span>
+      </nav>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </header>
+
+  <section class="lesson-hero">
+    <div class="lesson-hero-inner">
+      <div class="breadcrumb"><a href="../index.html">Início</a> → <a href="../index.html#cursos">Cursos</a> → Equações 2º Grau</div>
+      <h1>Equações do 2º Grau</h1>
+      <div class="lesson-meta">
+        <span>📐 Matemática</span>
+        <span>⏱ 18 min</span>
+        <span>📊 Ensino Médio</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="lesson-content">
+    <p>Equações do segundo grau aparecem em funções quadráticas, problemas de área, física (movimento) e em muitas questões de vestibular. Dominar a fórmula de Bhaskara e o discriminante resolve a maior parte dos exercícios.</p>
+
+    <h2>1. Forma geral</h2>
+    <div class="formula">
+      ax² + bx + c = 0 , com a ≠ 0
+    </div>
+    <p>a, b e c são números reais (coeficientes). a é o coeficiente de x², b de x e c o termo independente.</p>
+
+    <h2>2. Discriminante (Δ)</h2>
+    <div class="formula">
+      Δ = b² − 4ac
+    </div>
+    <ul>
+      <li>Δ > 0 → duas raízes reais distintas</li>
+      <li>Δ = 0 → uma raiz real (raiz dupla)</li>
+      <li>Δ < 0 → nenhuma raiz real (raízes complexas)</li>
+    </ul>
+
+    <h2>3. Fórmula de Bhaskara</h2>
+    <div class="formula">
+      x = (−b ± √Δ) / (2a)
+    </div>
+    <p>As duas soluções são:</p>
+    <ul>
+      <li>x₁ = (−b + √Δ) / (2a)</li>
+      <li>x₂ = (−b − √Δ) / (2a)</li>
+    </ul>
+
+    <div class="example-box">
+      <h4>Exemplo completo</h4>
+      <p>Resolva: x² − 5x + 6 = 0</p>
+      <p>a = 1, b = −5, c = 6</p>
+      <p>Δ = (−5)² − 4(1)(6) = 25 − 24 = 1</p>
+      <p>x = [5 ± √1] / 2</p>
+      <p>x₁ = (5+1)/2 = 3 &nbsp;&nbsp; x₂ = (5−1)/2 = 2</p>
+      <p><strong>Raízes: 2 e 3</strong></p>
+      <p>Conferência: (x−2)(x−3) = x² − 5x + 6. Correto.</p>
+    </div>
+
+    <h2>4. Soma e produto das raízes</h2>
+    <p>Se as raízes são x₁ e x₂:</p>
+    <div class="formula">
+      x₁ + x₂ = −b/a &nbsp;&nbsp;|&nbsp;&nbsp; x₁ · x₂ = c/a
+    </div>
+    <p>Útil para conferir resultados ou montar a equação a partir das raízes.</p>
+
+    <h2>5. Interpretação gráfica</h2>
+    <p>A função f(x) = ax² + bx + c é uma parábola.</p>
+    <ul>
+      <li>a > 0 → parábola “para cima” (concavidade positiva)</li>
+      <li>a < 0 → parábola “para baixo”</li>
+      <li>As raízes são os pontos onde a parábola corta o eixo x</li>
+      <li>O vértice tem x_v = −b/(2a)</li>
+    </ul>
+
+    <div class="tip-box">
+      <div class="icon">💡</div>
+      <div>
+        <strong>Dica de prova:</strong> antes de aplicar Bhaskara, veja se a equação é fatorável (produto = c, soma = b). Muitas questões do ensino médio têm raízes inteiras fáceis.
+      </div>
+    </div>
+
+    <div class="quiz-box">
+      <h3>Quiz</h3>
+      <p>Qual o discriminante de 2x² − 4x + 2 = 0?</p>
+      <div class="quiz-options" id="quiz1">
+        <div class="quiz-opt" data-correct="false">4</div>
+        <div class="quiz-opt" data-correct="true">0</div>
+        <div class="quiz-opt" data-correct="false">8</div>
+        <div class="quiz-opt" data-correct="false">−4</div>
+      </div>
+      <div class="quiz-feedback" id="feedback1"></div>
+    </div>
+
+    <div class="next-lesson">
+      <a href="fotossintese.html" class="btn btn-outline">← Fotossíntese</a>
+      <a href="segunda-guerra.html" class="btn btn-primary">Próxima: 2ª Guerra →</a>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="max-width:900px;margin:0 auto;padding:2rem 1.5rem;border-top:1px solid var(--border);">
+      <span>© 2026 Aurea Academy</span>
+      <a href="../index.html">Início</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('menuToggle')?.addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+    document.querySelectorAll('#quiz1 .quiz-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const opts = document.querySelectorAll('#quiz1 .quiz-opt');
+        const fb = document.getElementById('feedback1');
+        opts.forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='none'; });
+        if (opt.dataset.correct === 'true') {
+          opt.classList.add('correct');
+          fb.textContent = 'Correto! Δ = (−4)² − 4·2·2 = 16 − 16 = 0. Raiz dupla.';
+          fb.className = 'quiz-feedback show success';
+        } else {
+          opt.classList.add('wrong');
+          fb.textContent = 'Δ = b² − 4ac = 16 − 16 = 0. A equação tem uma raiz real (dupla).';
+          fb.className = 'quiz-feedback show error';
+          opts.forEach(o => { if (o.dataset.correct==='true') o.classList.add('correct'); });
+        }
+      });
+    });
+  </script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>

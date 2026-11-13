@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segunda Guerra Mundial — Aurea Academy</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../index.html" class="logo"><div class="logo-icon">✦</div> Aurea Academy</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">Início</a>
+        <a href="../index.html#cursos">Cursos</a>
+        <a href="../comunidade.html">Comunidade</a>
+        <span id="navAuth"></span>
+      </nav>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </header>
+
+  <section class="lesson-hero">
+    <div class="lesson-hero-inner">
+      <div class="breadcrumb"><a href="../index.html">Início</a> → <a href="../index.html#cursos">Cursos</a> → 2ª Guerra Mundial</div>
+      <h1>Segunda Guerra Mundial</h1>
+      <div class="lesson-meta">
+        <span>⚔ História</span>
+        <span>⏱ 20 min</span>
+        <span>📊 Fundamental e Médio</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="lesson-content">
+    <p>A Segunda Guerra Mundial (1939–1945) é um dos temas mais pesquisados em história. Esta aula organiza causas, principais frentes, viradas e consequências de forma clara e cronológica.</p>
+
+    <h2>1. Contexto e causas</h2>
+    <p>O Tratado de Versalhes (1919) impôs condições duras à Alemanha após a 1ª Guerra. A crise de 1929 agravou a situação econômica. Surgiram regimes autoritários: nazismo na Alemanha (Hitler), fascismo na Itália (Mussolini) e militarismo no Japão.</p>
+    <p>Principais causas:</p>
+    <ul>
+      <li>Revanchismo alemão e expansionismo (espaço vital)</li>
+      <li>Fracasso da Liga das Nações</li>
+      <li>Política de apaziguamento das democracias</li>
+      <li>Aliança do Eixo (Alemanha, Itália, Japão)</li>
+    </ul>
+
+    <h2>2. Início da guerra</h2>
+    <p><strong>1º de setembro de 1939:</strong> Alemanha invade a Polônia. França e Reino Unido declaram guerra. Em 1940 a Alemanha ocupa grande parte da Europa Ocidental (França, Países Baixos, etc.). A Batalha da Inglaterra (1940) impede a invasão do Reino Unido.</p>
+
+    <h2>3. Principais frentes</h2>
+    <h3>Frente Europeia</h3>
+    <ul>
+      <li>Operação Barbarossa (1941): invasão da União Soviética — ponto de virada no Leste</li>
+      <li>Batalha de Stalingrado (1942–43): derrota decisiva alemã</li>
+      <li>Dia D (6 de junho de 1944): desembarque na Normandia</li>
+      <li>Queda de Berlim e suicídio de Hitler (abril/maio 1945)</li>
+    </ul>
+    <h3>Frente do Pacífico</h3>
+    <ul>
+      <li>Ataque a Pearl Harbor (7 de dezembro de 1941) → entrada dos EUA</li>
+      <li>Batalhas de Midway e Guadalcanal</li>
+      <li>Bombas atômicas em Hiroshima e Nagasaki (agosto de 1945)</li>
+      <li>Rendição do Japão (2 de setembro de 1945)</li>
+    </ul>
+
+    <h2>4. Holocausto e crimes de guerra</h2>
+    <p>O regime nazista promoveu o genocídio sistemático de cerca de 6 milhões de judeus, além de ciganos, deficientes, opositores políticos e outros grupos. Os campos de concentração e extermínio (Auschwitz, Treblinka, etc.) tornaram-se símbolos do horror. Após a guerra, os Julgamentos de Nuremberg julgaram os principais responsáveis.</p>
+
+    <h2>5. Consequências</h2>
+    <ul>
+      <li>Cerca de 70–85 milhões de mortos (militares e civis)</li>
+      <li>Criação da ONU (1945)</li>
+      <li>Início da Guerra Fria (EUA × URSS)</li>
+      <li>Descolonização acelerada</li>
+      <li>Divisão da Alemanha e da Europa</li>
+      <li>EUA e URSS emergem como superpotências</li>
+    </ul>
+
+    <div class="tip-box">
+      <div class="icon">📌</div>
+      <div>
+        <strong>Datas-chave para memorizar:</strong> 1939 (início), 1941 (URSS e EUA entram), 1943 (Stalingrado), 1944 (Dia D), 1945 (fim na Europa e no Pacífico).
+      </div>
+    </div>
+
+    <div class="quiz-box">
+      <h3>Quiz</h3>
+      <p>Em que ano a Alemanha invadiu a União Soviética (Operação Barbarossa)?</p>
+      <div class="quiz-options" id="quiz1">
+        <div class="quiz-opt" data-correct="false">1939</div>
+        <div class="quiz-opt" data-correct="true">1941</div>
+        <div class="quiz-opt" data-correct="false">1943</div>
+        <div class="quiz-opt" data-correct="false">1944</div>
+      </div>
+      <div class="quiz-feedback" id="feedback1"></div>
+    </div>
+
+    <div class="next-lesson">
+      <a href="equacoes.html" class="btn btn-outline">← Equações</a>
+      <a href="inteligencia-artificial.html" class="btn btn-primary">Próxima: Inteligência Artificial →</a>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="max-width:900px;margin:0 auto;padding:2rem 1.5rem;border-top:1px solid var(--border);">
+      <span>© 2026 Aurea Academy</span>
+      <a href="../index.html">Início</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('menuToggle')?.addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+    document.querySelectorAll('#quiz1 .quiz-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const opts = document.querySelectorAll('#quiz1 .quiz-opt');
+        const fb = document.getElementById('feedback1');
+        opts.forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='none'; });
+        if (opt.dataset.correct === 'true') {
+          opt.classList.add('correct');
+          fb.textContent = 'Correto! A Operação Barbarossa começou em junho de 1941.';
+          fb.className = 'quiz-feedback show success';
+        } else {
+          opt.classList.add('wrong');
+          fb.textContent = 'A resposta correta é 1941. A invasão da URSS foi um ponto de virada da guerra.';
+          fb.className = 'quiz-feedback show error';
+          opts.forEach(o => { if (o.dataset.correct==='true') o.classList.add('correct'); });
+        }
+      });
+    });
+  </script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>
